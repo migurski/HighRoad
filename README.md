@@ -52,7 +52,7 @@ A maze of ramps marks the east approach to New York’s
 A cloverleaf interchange on Moscow’s
 [MKAD](http://en.wikipedia.org/wiki/Moscow_Ring_Road):
 
-![Moscow, z14](https://github.com/migurski/HighRoad/raw/master/renders/london-14.png)
+![Moscow, z14](https://github.com/migurski/HighRoad/raw/master/renders/moscow-14.png)
 
 London’s dense network of trunk roads, centered on
 [the Isle of Dogs](http://www.openstreetmap.org/?lat=51.5058&lon=-0.0111&zoom=12&layers=M):
