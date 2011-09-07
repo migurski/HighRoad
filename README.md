@@ -13,7 +13,13 @@ selection of roads for each zoom level.
 
 There’s a sample [Cascadenik style](https://github.com/migurski/HighRoad/blob/master/stylesheet.mss)
 and [layer file](https://github.com/migurski/HighRoad/blob/master/style.mml), but the real
-action is in [views.pgsql](https://github.com/migurski/HighRoad/blob/master/views.pgsql).
+action is in [views.pgsql](https://github.com/migurski/HighRoad/blob/master/views.pgsql),
+where you’ll find a comprehensive set of Postgres views against the usual `planet_osm_line`
+table produced by [Osm2pgsql](http://wiki.openstreetmap.org/wiki/Osm2pgsql).
+
+To use High Road, run the source of `views.pgsql` against your existing OSM rendering
+database and check out the sample files to understand what each query is doing. I’ll
+explain more here in the near future.
 
 Details
 -------
