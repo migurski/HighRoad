@@ -21,6 +21,9 @@ To use High Road, run the source of `views.pgsql` against your existing OSM rend
 database and check out the sample files to understand what each query is doing. I’ll
 explain more here in the near future.
 
+High Road is made by Michal Migurski, Nathaniel Kelso and Geraldine Sarmiento
+of [Stamen Design](http://stamen.com).
+
 Details
 -------
 
