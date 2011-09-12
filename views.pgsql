@@ -1,3 +1,75 @@
+-- High Road
+--
+-- This file is a collection of Postgres views that make rendering roads from
+-- OpenStreetMap data easier and better-looking. They are broken up by zoom
+-- level, corresponding to numbered levels in the traditional web-map spherical
+-- mercator projects. Zoom 0 is the entire planet, zoom 10 is where the street
+-- details of cities become visible, and zoom 15 is where complex physical road
+-- layering such as overpasses and tunnels becomes important.
+-- 
+-- Taking a cue from Justin O’Bierne’s dearly-departed 41Latitude blog, High
+-- Road ensures that each zoom level contains exactly three distinct levels of
+-- road: highways, major roads, and minor roads, a simplification of
+-- OpenStreetMap’s conventional six-level hierarchy of motorway, trunk, primary,
+-- secondary, tertiary, and small local roads.
+-- 
+-- These three categories are represented by the "kind" attribute, with values
+-- of "highway", "major_road", and "minor_road". At the highest zoom levels, a
+-- fourth value of "path" appears for footpaths.
+-- 
+-- 
+-- Setup
+-- 
+-- High Road can be applied to an existing OpenStreetMap rendering database
+-- created with osm2pgsql (http://wiki.openstreetmap.org/wiki/Osm2pgsql). Using
+-- the command-line psql utility, you can add High Road views like this:
+-- 
+--     psql -U username -f views.pgsql databasename
+-- 
+-- The views here assume that you've created your database using the default
+-- settings of osm2pgsql, including the prefix of "planet_osm". If you've chosen
+-- a different prefix, you should find every instance of "planet_osm" in the
+-- script below and replace is with your chosen prefix.
+-- 
+-- 
+-- Rendering
+-- 
+-- In order to work well with Mapnik, Cascadenik and Carto and make it easy to
+-- add road casings that look physically correct, High Road returns multiple
+-- copies of each geometry with a "render" attribute.
+-- 
+-- Render="outline" is used to attach casings around entire classes of roads,
+-- and ensures that multiple carriageways and complex interchanges merge cleanly
+-- to reduce map noise.
+-- 
+-- Render="inline" is used for the inner lines of the roads themselves, and
+-- represents the road surface.
+-- 
+-- Render="casing" is present only at zoom level 14 and above, and is used to
+-- introduce local outlines to roads that overlap one another. An example use of
+-- features with this attribute would be to correctly show overpasses in a
+-- complex highway interchange.
+-- 
+-- 
+-- Inclusion
+-- 
+-- At zoom levels 10 and 11, local and residential streets are omitted. Bold,
+-- simple highways dominate the map, and the visual layering is categorical to
+-- clearly separate each road type.
+-- 
+-- At zoom levels 12 and 13, local roads are added for texture but remain
+-- separated from highways and arterial roads. Visual layering is by category,
+-- with highways appearing in front of everything else.
+-- 
+-- At zoom level 14, highways remain separate from other roads but the physical
+-- layering of on-ramps becomes visible.
+-- 
+-- At zoom level 15 and above, roads are layered physically using the tunnel,
+-- bridge, and layer tags from OpenStreetMap to create correctly-drawn
+-- intersections between different types of roads. Footpaths begin to appear
+-- at this zoom level as well.
+--
+
 BEGIN;
 
 DROP VIEW IF EXISTS planet_osm_line_z15plus_big;
