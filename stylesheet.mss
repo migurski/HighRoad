@@ -109,6 +109,13 @@ Map {
 	line-color: #000;
 }
 
+.roads[kind=rail][render=inline],
+.roads[kind=rail][render=casing],
+.roads[kind=rail][render=outline]
+{
+	line-color: #444;
+}
+
 .roads[kind=path][render=inline]
 {
 	line-color: #fff;
@@ -300,6 +307,18 @@ Map {
 	line-width: 3.5;
 }
 
+#z14-roads[zoom=14][kind=rail][render=inline]
+{
+	line-width: 1;
+}
+
+#z14-roads[zoom=14][kind=rail][render=casing]
+{
+	line-width: 3;
+	line-dasharray: 1,3;
+	line-cap: butt;
+}
+
 /*//////// Zoom Level 15 */
 
 #z15plus-roads[zoom=15][kind=highway][render=inline]
@@ -360,6 +379,18 @@ Map {
 #z15plus-roads[zoom=15][highway=service][render=casing]
 {
 	line-width: 3.5;
+}
+
+#z15plus-roads[zoom=15][kind=rail][render=inline]
+{
+	line-width: 1;
+}
+
+#z15plus-roads[zoom=15][kind=rail][render=casing]
+{
+	line-width: 3;
+	line-dasharray: 1,3;
+	line-cap: butt;
 }
 
 #z15plus-roads[zoom=15][kind=path][render=inline]
@@ -431,6 +462,18 @@ Map {
 	line-width: 4;
 }
 
+#z15plus-roads[zoom=16][kind=rail][render=inline]
+{
+	line-width: 1;
+}
+
+#z15plus-roads[zoom=16][kind=rail][render=casing]
+{
+	line-width: 5;
+	line-dasharray: 1,4;
+	line-cap: butt;
+}
+
 #z15plus-roads[zoom=16][kind=path][render=inline]
 {
 	line-width: 1;
@@ -500,6 +543,18 @@ Map {
 	line-width: 8;
 }
 
+#z15plus-roads[zoom=17][kind=rail][render=inline]
+{
+	line-width: 1;
+}
+
+#z15plus-roads[zoom=17][kind=rail][render=casing]
+{
+	line-width: 5;
+	line-dasharray: 1,4;
+	line-cap: butt;
+}
+
 #z15plus-roads[zoom=17][kind=path][render=inline]
 {
 	line-width: 2; 
@@ -558,6 +613,18 @@ Map {
 #z15plus-roads[zoom>=18][kind=minor_road][render=casing]
 {
 	line-width: 14.5;
+}
+
+#z15plus-roads[zoom=18][kind=rail][render=inline]
+{
+	line-width: 2;
+}
+
+#z15plus-roads[zoom=18][kind=rail][render=casing]
+{
+	line-width: 7;
+	line-dasharray: 2,6;
+	line-cap: butt;
 }
 
 #z15plus-roads[zoom>=18][kind=path][render=inline]
