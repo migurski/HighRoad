@@ -95,34 +95,34 @@ CREATE VIEW planet_osm_line_z10 AS
          railway,
          render,
 
-         (CASE WHEN highway IN ('motorway', 'trunk') THEN 'highway'
-               WHEN highway IN ('primary') THEN 'major_road'
+         (CASE WHEN highway IN ('motorway') THEN 'highway'
+               WHEN highway IN ('trunk', 'primary') THEN 'major_road'
                ELSE 'minor_road' END) AS kind,
 
-         'no' AS is_link,
+         'no'::VARCHAR AS is_link,
          (CASE WHEN tunnel IN ('yes', 'true') THEN 'yes'
                ELSE 'no' END) AS is_tunnel,
          (CASE WHEN bridge IN ('yes', 'true') THEN 'yes'
                ELSE 'no' END) AS is_bridge,
 
-         (CASE WHEN highway IN ('motorway', 'trunk') THEN 0
-               WHEN highway IN ('primary') THEN 1
+         (CASE WHEN highway IN ('motorway') THEN 0
+               WHEN highway IN ('trunk', 'primary') THEN 1
                WHEN highway IN ('secondary', 'tertiary') THEN 2
                ELSE 99 END) AS priority
   FROM (
 
       SELECT *, 'outline' AS render, 1 AS is_outline
       FROM planet_osm_line
-      WHERE highway IN ('motorway', 'trunk')
-         OR highway IN ('primary')
+      WHERE highway IN ('motorway')
+         OR highway IN ('trunk', 'primary')
          OR highway IN ('secondary')
     
       UNION
       
       SELECT *, 'inline' AS render, 0 AS is_outline
       FROM planet_osm_line
-      WHERE highway IN ('motorway', 'trunk')
-         OR highway IN ('primary')
+      WHERE highway IN ('motorway')
+         OR highway IN ('trunk', 'primary')
          OR highway IN ('secondary')
 
   ) AS roads
@@ -137,34 +137,34 @@ CREATE VIEW planet_osm_line_z11 AS
          railway,
          render,
 
-         (CASE WHEN highway IN ('motorway', 'trunk') THEN 'highway'
-               WHEN highway IN ('primary') THEN 'major_road'
+         (CASE WHEN highway IN ('motorway') THEN 'highway'
+               WHEN highway IN ('trunk', 'primary') THEN 'major_road'
                ELSE 'minor_road' END) AS kind,
 
-         'no' AS is_link,
+         'no'::VARCHAR AS is_link,
          (CASE WHEN tunnel IN ('yes', 'true') THEN 'yes'
                ELSE 'no' END) AS is_tunnel,
          (CASE WHEN bridge IN ('yes', 'true') THEN 'yes'
                ELSE 'no' END) AS is_bridge,
 
-         (CASE WHEN highway IN ('motorway', 'trunk') THEN 0
-               WHEN highway IN ('primary') THEN 1
+         (CASE WHEN highway IN ('motorway') THEN 0
+               WHEN highway IN ('trunk', 'primary') THEN 1
                WHEN highway IN ('secondary', 'tertiary') THEN 2
                ELSE 99 END) AS priority
   FROM (
 
       SELECT *, 'outline' AS render, 1 AS is_outline
       FROM planet_osm_line
-      WHERE highway IN ('motorway', 'trunk')
-         OR highway IN ('primary')
+      WHERE highway IN ('motorway')
+         OR highway IN ('trunk', 'primary')
          OR highway IN ('secondary', 'tertiary')
     
       UNION
       
       SELECT *, 'inline' AS render, 0 AS is_outline
       FROM planet_osm_line
-      WHERE highway IN ('motorway', 'trunk')
-         OR highway IN ('primary')
+      WHERE highway IN ('motorway')
+         OR highway IN ('trunk', 'primary')
          OR highway IN ('secondary', 'tertiary')
 
   ) AS roads
@@ -179,8 +179,8 @@ CREATE VIEW planet_osm_line_z12 AS
          railway,
          render,
 
-         (CASE WHEN highway IN ('motorway', 'motorway_link', 'trunk', 'trunk_link') THEN 'highway'
-               WHEN highway IN ('secondary', 'primary') THEN 'major_road'
+         (CASE WHEN highway IN ('motorway', 'motorway_link') THEN 'highway'
+               WHEN highway IN ('trunk', 'trunk_link', 'secondary', 'primary') THEN 'major_road'
                ELSE 'minor_road' END) AS kind,
 
          (CASE WHEN highway LIKE '%_link' THEN 'yes'
@@ -190,8 +190,8 @@ CREATE VIEW planet_osm_line_z12 AS
          (CASE WHEN bridge IN ('yes', 'true') THEN 'yes'
                ELSE 'no' END) AS is_bridge,
 
-         (CASE WHEN highway IN ('motorway', 'trunk') THEN 0
-               WHEN highway IN ('secondary', 'primary') THEN 1
+         (CASE WHEN highway IN ('motorway') THEN 0
+               WHEN highway IN ('trunk', 'secondary', 'primary') THEN 1
                WHEN highway IN ('tertiary', 'residential', 'unclassified', 'road') THEN 2
                WHEN highway LIKE '%_link' THEN 3
                ELSE 99 END) AS priority
@@ -199,16 +199,16 @@ CREATE VIEW planet_osm_line_z12 AS
     
       SELECT *, 'outline' AS render, 1 AS is_outline
       FROM planet_osm_line
-      WHERE highway IN ('motorway', 'motorway_link', 'trunk', 'trunk_link')
-         OR highway IN ('secondary', 'primary')
+      WHERE highway IN ('motorway', 'motorway_link')
+         OR highway IN ('trunk', 'trunk_link', 'secondary', 'primary')
          OR highway IN ('tertiary', 'residential', 'unclassified', 'road', 'unclassified')
     
       UNION
       
       SELECT *, 'inline' AS render, 0 AS is_outline
       FROM planet_osm_line
-      WHERE highway IN ('motorway', 'motorway_link', 'trunk', 'trunk_link')
-         OR highway IN ('secondary', 'primary')
+      WHERE highway IN ('motorway', 'motorway_link')
+         OR highway IN ('trunk', 'trunk_link', 'secondary', 'primary')
          OR highway IN ('tertiary', 'residential', 'unclassified', 'road', 'unclassified')
 
   ) AS roads
@@ -223,8 +223,8 @@ CREATE VIEW planet_osm_line_z13 AS
          railway,
          render,
 
-         (CASE WHEN highway IN ('motorway', 'motorway_link', 'trunk', 'trunk_link') THEN 'highway'
-               WHEN highway IN ('primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link') THEN 'major_road'
+         (CASE WHEN highway IN ('motorway', 'motorway_link') THEN 'highway'
+               WHEN highway IN ('trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link') THEN 'major_road'
                ELSE 'minor_road' END) AS kind,
 
          (CASE WHEN highway LIKE '%_link' THEN 'yes'
@@ -234,26 +234,26 @@ CREATE VIEW planet_osm_line_z13 AS
          (CASE WHEN bridge IN ('yes', 'true') THEN 'yes'
                ELSE 'no' END) AS is_bridge,
 
-         (CASE WHEN highway IN ('motorway', 'trunk') THEN 0
-               WHEN highway IN ('motorway_link', 'trunk_link') THEN 1
-               WHEN highway IN ('primary', 'secondary', 'tertiary') THEN 2
-               WHEN highway IN ('primary_link', 'secondary_link') THEN 3
+         (CASE WHEN highway IN ('motorway') THEN 0
+               WHEN highway IN ('motorway_link') THEN 1
+               WHEN highway IN ('trunk', 'primary', 'secondary', 'tertiary') THEN 2
+               WHEN highway IN ('trunk_link', 'primary_link', 'secondary_link') THEN 3
                WHEN highway IN ('residential', 'unclassified', 'road') THEN 4
                ELSE 99 END) AS priority
   FROM (
     
       SELECT *, 'outline' AS render, 1 AS is_outline
       FROM planet_osm_line
-      WHERE highway IN ('motorway', 'motorway_link', 'trunk', 'trunk_link')
-         OR highway IN ('primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary')
+      WHERE highway IN ('motorway', 'motorway_link')
+         OR highway IN ('trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary')
          OR highway IN ('residential', 'unclassified', 'road', 'unclassified')
     
       UNION
       
       SELECT *, 'inline' AS render, 0 AS is_outline
       FROM planet_osm_line
-      WHERE highway IN ('motorway', 'motorway_link', 'trunk', 'trunk_link')
-         OR highway IN ('primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary')
+      WHERE highway IN ('motorway', 'motorway_link')
+         OR highway IN ('trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary')
          OR highway IN ('residential', 'unclassified', 'road', 'unclassified')
 
   ) AS roads
@@ -268,8 +268,8 @@ CREATE VIEW planet_osm_line_z14 AS
          railway,
          render,
 
-         (CASE WHEN highway IN ('motorway', 'motorway_link', 'trunk', 'trunk_link') THEN 'highway'
-               WHEN highway IN ('primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link') THEN 'major_road'
+         (CASE WHEN highway IN ('motorway', 'motorway_link') THEN 'highway'
+               WHEN highway IN ('trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link') THEN 'major_road'
                ELSE 'minor_road' END) AS kind,
 
          (CASE WHEN highway LIKE '%_link' THEN 'yes'
@@ -294,32 +294,31 @@ CREATE VIEW planet_osm_line_z14 AS
                WHEN highway IN ('secondary') THEN 3
                WHEN highway IN ('tertiary') THEN 4
                WHEN highway LIKE '%_link' THEN 5
-               WHEN highway IN ('residential', 'unclassified', 'road') THEN 6
-               WHEN highway IN ('unclassified', 'service', 'minor') THEN 7
+               WHEN highway IN ('residential', 'unclassified', 'road', 'minor') THEN 6
                ELSE 99 END) AS priority
   FROM (
     
       SELECT *, 'outline' AS render, 1 AS is_outline, 1 AS is_casing
       FROM planet_osm_line
-      WHERE highway IN ('motorway', 'motorway_link', 'trunk', 'trunk_link')
-         OR highway IN ('primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link')
-         OR highway IN ('residential', 'unclassified', 'road', 'unclassified', 'service', 'minor')
+      WHERE highway IN ('motorway', 'motorway_link')
+         OR highway IN ('trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link')
+         OR highway IN ('residential', 'unclassified', 'road', 'minor')
     
       UNION
       
       SELECT *, 'casing' AS render, 0 AS is_outline, 1 AS is_casing
       FROM planet_osm_line
-      WHERE highway IN ('motorway', 'motorway_link', 'trunk', 'trunk_link')
-         OR highway IN ('primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link')
-         OR highway IN ('residential', 'unclassified', 'road', 'unclassified', 'service', 'minor')
+      WHERE highway IN ('motorway', 'motorway_link')
+         OR highway IN ('trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link')
+         OR highway IN ('residential', 'unclassified', 'road', 'minor')
     
       UNION
       
       SELECT *, 'inline' AS render, 0 AS is_outline, 0 AS is_casing
       FROM planet_osm_line
-      WHERE highway IN ('motorway', 'motorway_link', 'trunk', 'trunk_link')
-         OR highway IN ('primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link')
-         OR highway IN ('residential', 'unclassified', 'road', 'unclassified', 'service', 'minor')
+      WHERE highway IN ('motorway', 'motorway_link')
+         OR highway IN ('trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link')
+         OR highway IN ('residential', 'unclassified', 'road', 'minor')
 
   ) AS roads
 
@@ -339,8 +338,8 @@ CREATE VIEW planet_osm_line_z15plus AS
          railway,
          render,
 
-         (CASE WHEN highway IN ('motorway', 'motorway_link', 'trunk', 'trunk_link') THEN 'highway'
-               WHEN highway IN ('primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link') THEN 'major_road'
+         (CASE WHEN highway IN ('motorway', 'motorway_link') THEN 'highway'
+               WHEN highway IN ('trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link') THEN 'major_road'
                WHEN highway IN ('footpath', 'track', 'footway', 'steps', 'pedestrian', 'path', 'cycleway') THEN 'path'
                ELSE 'minor_road' END) AS kind,
 
@@ -375,8 +374,8 @@ CREATE VIEW planet_osm_line_z15plus AS
     
       SELECT *, 'outline' AS render, 1 AS is_outline, 1 AS is_casing
       FROM planet_osm_line
-      WHERE highway IN ('motorway', 'motorway_link', 'trunk', 'trunk_link')
-         OR highway IN ('primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link')
+      WHERE highway IN ('motorway', 'motorway_link')
+         OR highway IN ('trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link')
          OR highway IN ('residential', 'unclassified', 'road', 'unclassified', 'service', 'minor')
          OR highway IN ('footpath', 'track', 'footway', 'steps', 'pedestrian', 'path', 'cycleway')
     
@@ -384,8 +383,8 @@ CREATE VIEW planet_osm_line_z15plus AS
       
       SELECT *, 'casing' AS render, 0 AS is_outline, 1 AS is_casing
       FROM planet_osm_line
-      WHERE highway IN ('motorway', 'motorway_link', 'trunk', 'trunk_link')
-         OR highway IN ('primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link')
+      WHERE highway IN ('motorway', 'motorway_link')
+         OR highway IN ('trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link')
          OR highway IN ('residential', 'unclassified', 'road', 'unclassified', 'service', 'minor')
          OR highway IN ('footpath', 'track', 'footway', 'steps', 'pedestrian', 'path', 'cycleway')
     
@@ -393,8 +392,8 @@ CREATE VIEW planet_osm_line_z15plus AS
       
       SELECT *, 'inline' AS render, 0 AS is_outline, 0 AS is_casing
       FROM planet_osm_line
-      WHERE highway IN ('motorway', 'motorway_link', 'trunk', 'trunk_link')
-         OR highway IN ('primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link')
+      WHERE highway IN ('motorway', 'motorway_link')
+         OR highway IN ('trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link')
          OR highway IN ('residential', 'unclassified', 'road', 'unclassified', 'service', 'minor')
          OR highway IN ('footpath', 'track', 'footway', 'steps', 'pedestrian', 'path', 'cycleway')
 
