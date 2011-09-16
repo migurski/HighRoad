@@ -3,9 +3,9 @@ NYC_LATLON = 40.756749 -73.998284
 LON_LATLON = 51.507553 -0.008271
 MOS_LATLON = 55.882322 37.724175
 
-all: high-zoom-cities.html
+all: index.html
 
-high-zoom-cities.html: \
+index.html: \
 	renders/sanfrancisco-10.png renders/sanfrancisco-11.png renders/sanfrancisco-12.png \
 	renders/sanfrancisco-13.png renders/sanfrancisco-14.png renders/sanfrancisco-15.png \
 	renders/sanfrancisco-16.png renders/sanfrancisco-17.png renders/sanfrancisco-18.png \
