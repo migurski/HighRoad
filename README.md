@@ -24,6 +24,19 @@ explain more here in the near future.
 High Road is made by Michal Migurski, Nathaniel Kelso and Geraldine Sarmiento
 of [Stamen Design](http://stamen.com).
 
+Upgrading
+---------
+
+Before you update your copy of OSM planet, you'll need to drop the High Road views or the OSM2PGSQL script will fail.
+
+    DROP VIEW planet_osm_line_z15plus CASCADE;
+    DROP VIEW planet_osm_line_z14 CASCADE;
+    DROP VIEW planet_osm_line_z13 CASCADE;
+    DROP VIEW planet_osm_line_z12 CASCADE;
+    DROP VIEW planet_osm_line_z11 CASCADE;
+    DROP VIEW planet_osm_line_z10 CASCADE;
+
+
 Details
 -------
 
