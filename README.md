@@ -45,6 +45,12 @@ Upgrading
 
 Before you update your copy of OSM planet, you'll need to drop the High Road views or the OSM2PGSQL script will fail.
 
+Login to Postgres:
+
+    psql -U username -d databasename
+    
+Drop the views:
+
     DROP VIEW planet_osm_line_z15plus CASCADE;
     DROP VIEW planet_osm_line_z14 CASCADE;
     DROP VIEW planet_osm_line_z13 CASCADE;
