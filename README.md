@@ -18,11 +18,27 @@ where you’ll find a comprehensive set of Postgres views against the usual `pla
 table produced by [Osm2pgsql](http://wiki.openstreetmap.org/wiki/Osm2pgsql).
 
 To use High Road, run the source of `views.pgsql` against your existing OSM rendering
-database and check out the sample files to understand what each query is doing. I’ll
-explain more here in the near future.
+database and check out the sample files to understand what each query is doing. 
 
 High Road is made by Michal Migurski, Nathaniel Kelso and Geraldine Sarmiento
 of [Stamen Design](http://stamen.com).
+
+Setup
+-------
+
+High Road can be applied to an existing OpenStreetMap rendering database
+created with osm2pgsql (http://wiki.openstreetmap.org/wiki/Osm2pgsql). Using
+the command-line psql utility, you can add High Road views like this:
+ 
+    psql -U username -f views.pgsql databasename
+
+The views here assume that you've created your database using the default
+settings of osm2pgsql, including the prefix of "planet_osm". If you've chosen
+a different prefix, you should find every instance of "planet_osm" in the
+script below and replace is with your chosen prefix. The typical username 
+for OSM databases is `osm` and the typical databasename is `planet_osm`.
+
+More details in the `views.pgsql` file comments.
 
 Upgrading
 ---------
