@@ -28,7 +28,7 @@ High Road can be applied to an existing OpenStreetMap rendering database
 created with osm2pgsql (http://wiki.openstreetmap.org/wiki/Osm2pgsql). Using
 the command-line psql utility, you can add High Road views like this:
  
-    psql -U username -f views.pgsql databasename
+    psql -U username -f high_road_views-setup.pgsql databasename
 
 The views here assume that you've created your database using the default
 settings of osm2pgsql, including the prefix of "planet_osm". If you've chosen
@@ -36,7 +36,7 @@ a different prefix, you should find every instance of "planet_osm" in the
 script below and replace is with your chosen prefix. The typical username 
 for OSM databases is `osm` and the typical databasename is `planet_osm`.
 
-More details in the `views.pgsql` file comments.
+More details in the `high_road_views-setup.pgsql` file comments.
 
 
 ##Removal, upgrading
@@ -54,11 +54,11 @@ settings of osm2pgsql, including the prefix of "planet_osm". If you've chosen
 a different prefix, you should find every instance of "planet_osm" in the
 script below and replace is with your chosen prefix.
 
-This is the same as loging in to Postgres:
+This is the same as if you logged into Postgres:
 
     psql -U username -d databasename
     
-And drop the views manually:
+And dropped the views manually:
 
     DROP VIEW planet_osm_line_z15plus CASCADE;
     DROP VIEW planet_osm_line_z14 CASCADE;
