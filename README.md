@@ -43,7 +43,7 @@ More details in the `high_road_views-setup.pgsql` file comments.
 
 High Road can be removed from an existing OpenStreetMap rendering database. 
 
-NOTE: To upgrade your OSM planet, it will need to be removed, then setup again.
+NOTE: To upgrade your OSM planet, High Road will need to be removed before OSM import, then setup again after OSM import.
 
 Using the command-line psql utility, you can remove High Road views like this:
  
