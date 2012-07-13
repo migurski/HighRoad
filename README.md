@@ -1,5 +1,4 @@
-High Road
-=========
+#High Road
 
 This may be the last OpenStreetMap road query you will ever need.
 
@@ -23,8 +22,7 @@ database and check out the sample files to understand what each query is doing.
 High Road is made by Michal Migurski, Nathaniel Kelso and Geraldine Sarmiento
 of [Stamen Design](http://stamen.com).
 
-Setup
--------
+##Setup
 
 High Road can be applied to an existing OpenStreetMap rendering database
 created with osm2pgsql (http://wiki.openstreetmap.org/wiki/Osm2pgsql). Using
@@ -40,16 +38,27 @@ for OSM databases is `osm` and the typical databasename is `planet_osm`.
 
 More details in the `views.pgsql` file comments.
 
-Upgrading
----------
 
-Before you update your copy of OSM planet, you'll need to drop the High Road views or the OSM2PGSQL script will fail.
+##Removal, upgrading
 
-Login to Postgres:
+High Road can be removed from an existing OpenStreetMap rendering database. 
+
+NOTE: To upgrade your OSM planet, it will need to be removed, then setup again.
+
+Using the command-line psql utility, you can remove High Road views like this:
+ 
+     psql -U username -f high_road_views-remove.pgsql databasename
+ 
+The views here assume that you've created your database using the default
+settings of osm2pgsql, including the prefix of "planet_osm". If you've chosen
+a different prefix, you should find every instance of "planet_osm" in the
+script below and replace is with your chosen prefix.
+
+This is the same as loging in to Postgres:
 
     psql -U username -d databasename
     
-Drop the views:
+And drop the views manually:
 
     DROP VIEW planet_osm_line_z15plus CASCADE;
     DROP VIEW planet_osm_line_z14 CASCADE;
@@ -59,8 +68,7 @@ Drop the views:
     DROP VIEW planet_osm_line_z10 CASCADE;
 
 
-Details
--------
+#Details
 
 Taking a cue from Justin O’Bierne’s dearly-departed 41Latitude blog, High Road ensures
 that each zoom level contains exactly three distinct levels of road: highways, major
@@ -85,8 +93,7 @@ and underpasses as they exist in the built world:
 
 ![Oakland, for real](https://github.com/migurski/HighRoad/raw/master/renders/oakland.jpg)
 
-Elsewhere
----------
+##Elsewhere
 
 A maze of ramps marks the east approach to New York’s
 [Lincoln Tunnel](http://maps.google.com/maps?q=new+york+lincoln+tunnel&hl=en&ll=40.757408,-73.996997&spn=0.004575,0.011169&sll=37.0625,-95.677068&sspn=39.099308,58.007813&vpsrc=6&t=h&z=17):
