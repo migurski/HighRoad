@@ -24,13 +24,29 @@
 -- created with osm2pgsql (http://wiki.openstreetmap.org/wiki/Osm2pgsql). Using
 -- the command-line psql utility, you can add High Road views like this:
 -- 
---     psql -U username -f views.pgsql databasename
+--     psql -U username -f high_roads_views-setup.pgsql databasename
 -- 
 -- The views here assume that you've created your database using the default
 -- settings of osm2pgsql, including the prefix of "planet_osm". If you've chosen
 -- a different prefix, you should find every instance of "planet_osm" in the
 -- script below and replace is with your chosen prefix.
 -- 
+--
+-- Removal, upgrading
+-- 
+-- High Road can be removed from an existing OpenStreetMap rendering database. 
+--
+-- NOTE: To upgrade your OSM planet, it will need to be removed, then setup again.
+--
+--- Using the command-line psql utility, you can remove High Road views like this:
+-- 
+--     psql -U username -f high_road_views-remove.pgsql databasename
+-- 
+-- The views here assume that you've created your database using the default
+-- settings of osm2pgsql, including the prefix of "planet_osm". If you've chosen
+-- a different prefix, you should find every instance of "planet_osm" in the
+-- script below and replace is with your chosen prefix.
+--
 -- 
 -- Rendering
 -- 
