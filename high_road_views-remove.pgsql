@@ -8,8 +8,6 @@
 -- layering such as overpasses and tunnels becomes important.
 -- 
 -- 
--- Removal
--- 
 -- Removal, upgrading
 -- 
 -- High Road can be removed from an existing OpenStreetMap rendering database. 
