@@ -71,7 +71,8 @@ And dropped the views manually:
     DROP VIEW planet_osm_line_z10 CASCADE;
 
 
-#Details
+Details
+-------
 
 Taking a cue from Justin O’Bierne’s dearly-departed 41Latitude blog, High Road ensures
 that each zoom level contains exactly three distinct levels of road: highways, major
