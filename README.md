@@ -1,4 +1,5 @@
-#High Road
+High Road
+=========
 
 This may be the last OpenStreetMap road query you will ever need.
 
@@ -22,7 +23,8 @@ database and check out the sample files to understand what each query is doing.
 High Road is made by Michal Migurski, Nathaniel Kelso and Geraldine Sarmiento
 of [Stamen Design](http://stamen.com).
 
-##Setup
+Setup
+-----
 
 High Road can be applied to an existing OpenStreetMap rendering database
 created with osm2pgsql (http://wiki.openstreetmap.org/wiki/Osm2pgsql). Using
@@ -39,7 +41,8 @@ for OSM databases is `osm` and the typical databasename is `planet_osm`.
 More details in the `high_road_views-setup.pgsql` file comments.
 
 
-##Removal, upgrading
+Removal, upgrading
+------------------
 
 High Road can be removed from an existing OpenStreetMap rendering database. 
 
@@ -93,7 +96,8 @@ and underpasses as they exist in the built world:
 
 ![Oakland, for real](https://github.com/migurski/HighRoad/raw/master/renders/oakland.jpg)
 
-##Elsewhere
+Elsewhere
+---------
 
 A maze of ramps marks the east approach to New York’s
 [Lincoln Tunnel](http://maps.google.com/maps?q=new+york+lincoln+tunnel&hl=en&ll=40.757408,-73.996997&spn=0.004575,0.011169&sll=37.0625,-95.677068&sspn=39.099308,58.007813&vpsrc=6&t=h&z=17):
